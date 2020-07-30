@@ -223,7 +223,7 @@ export default {
       this.setPlayingState(!this.playing)
     },
     updateTime(e) {
-      console.log('e', e.target, e.target.currentTime)
+      // console.log('e', e.target, e.target.currentTime)
       this.currentTime = e.target.currentTime
     },
     formatTime(time) {
@@ -232,6 +232,7 @@ export default {
       let second = this._pad(time % 60)
       return `${minute}:${second}`
     },
+    // 补零
     _pad(num, n = 2) {
       let len = num.toString().length
       if (len < n) {

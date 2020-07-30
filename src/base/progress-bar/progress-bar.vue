@@ -1,41 +1,75 @@
 <template>
-  <div class='progress-bar' ref="progressBar">
+  <div class="progress-bar" ref="progressBar">
     <div class="bar-inner">
       <div class="progress" ref="progress"></div>
-      <div class="progress-btn-wrapper" ref="progressBtn">
+      <div
+        class="progress-btn-wrapper"
+        ref="progressBtn"
+        @touchstart.prevent="progressTouchStart"
+        @touchmove.prevent="progressTouchMove"
+        @touchend="progressTouchEnd"
+      >
         <div class="progress-btn"></div>
       </div>
     </div>
   </div>
 </template>
 
-<script type='text/ecmascript-6'>
+<script type="text/ecmascript-6">
 import {prefixStyle} from 'common/js/dom'
 const progressBtnWidth = 16
 const transform = prefixStyle('transform')
 
 export default {
+  data() {
+    return {
+      touch: {}
+    }
+  },
   props: {
     percent: {
       type: Number,
       default: 0
     }
   },
+  // created() {
+  //   this.touch = {}
+  // },
   watch: {
     percent(newpercent) {
-      console.log('newpercent', newpercent)
-      let barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
-      let offsetWidth = newpercent * barWidth
-      this.$refs.progress.style.width = `${offsetWidth}px`
-      this.$refs.progressBtn.style[transform] = `translate3d(${offsetWidth}px, 0, 0)`
+      if (newpercent >= 0 && !this.touch.initiated) {
+        let barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
+        let offsetWidth = newpercent * barWidth
+        this._offset(offsetWidth)
+      }
     }
   },
   methods: {
+    progressTouchStart(e) {
+      this.touch.initiated = true
+      this.touch.startX = e.touches[0].pageX
+      this.touch.left = this.$refs.progress.clientWidth
+    },
+    progressTouchMove(e) {
+      if (!this.touch.initiated) {
+        return
+      }
+      const delta = e.touches[0].pageX - this.touch.startX
+      const offsetWidth = Math.min(this.$refs.progressBar.clientWidth - progressBtnWidth, Math.max(0, this.touch.left + delta))
+      this._offset(offsetWidth)
+    },
+    progressTouchEnd() {
+      this.touch.initiated = false
+    },
+    _offset(offsetWidth) {
+      this.$refs.progress.style.width = `${offsetWidth}px`
+      this.$refs.progressBtn.style[transform] = `translate3d(${offsetWidth}px, 0, 0)`
+    }
   }
 }
 </script>
 
-<style scoped lang='stylus' rel='stylesheet/stylus'>
+<style scoped lang="stylus" rel="stylesheet/stylus">
 @import "~common/stylus/variable"
 
 .progress-bar
@@ -48,6 +82,7 @@ export default {
     .progress
       position: absolute
       height: 100%
+      background: $color-theme
     .progress-btn-wrapper
       position: absolute
       width: 30px
