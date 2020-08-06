@@ -43,6 +43,20 @@ export default {
           this.songs = this._normalizeSongs(res.data.list)
         }
       })
+      // .then(() => {
+      //   this.songs = this.song.map((item, index) => {
+      //     return {
+      //       album: item.album,
+      //       duration: item.duration,
+      //       id: item.id,
+      //       image: item.image,
+      //       mid: item.mid,
+      //       name: item.name,
+      //       singer: item.singer,
+      //       url: 'https://u.y.qq.com/cgi-bin/musicu.fcg?_=1596522954517'
+      //     }
+      //   })
+      // })
     },
     _normalizeSongs(list) {
       let ret = []

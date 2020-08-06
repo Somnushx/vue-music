@@ -50,6 +50,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
     before(app) {
+      // 定义一个路由，get 到一个 /api/getDiscList 接口，通过 axios 伪造 headers，发送给QQ音乐服务器一个 http 请求，还有 param 参数。得到服务端正确的响应，通过 res.json(response.data) 返回到浏览器端
       app.get('/api/getDiscList', function (req, res) {
        var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg' // 原api
        axios.get(url, {
@@ -63,6 +64,29 @@ const devWebpackConfig = merge(baseWebpackConfig, {
        }).catch((e) => {
         console.log(e)
        })
+      });
+      app.get('/api/lyric', function (req, res) {
+        var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
+      
+        axios.get(url, {
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          var ret = response.data
+          if (typeof ret === 'string') {
+            var reg = /^\w+\(({[^()]+})\)$/
+            var matches = ret.match(reg)
+            if (matches) {
+              ret = JSON.parse(matches[1])
+            }
+          }
+          res.json(ret)
+        }).catch((e) => {
+          console.log(e)
+        })
       })
      }
   },

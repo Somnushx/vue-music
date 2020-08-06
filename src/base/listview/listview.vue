@@ -131,6 +131,9 @@ export default {
       this.scrollY = -this.listHeight[index]
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
     },
+    refresh() {
+      this.$refs.listview.refresh()
+    },
     // 计算歌手列表中每个列表组合的高度
     _calculateHeight() {
       this.listHeight = []
