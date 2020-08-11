@@ -10,18 +10,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      // '/api/getDiscList': {
-      //   target: 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg',
-      //   bypass: function(req, res, proxyOptions) {
-      //     req.headers.referer = 'https://c.y.qq.com/'
-      //   },
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/api/getDiscList': ''
-      //   }
-      // }
-    },
+    proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
