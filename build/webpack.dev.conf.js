@@ -99,7 +99,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       //   }).then((response) => {
       //     var ret = response.data
       //     if (typeof ret === 'string') {
-      //       // var reg = /^\w+\(({[^()]+})\)$/
       //       var reg = /{.*}/
       //       var matches = ret.match(reg)           
       //       if (matches) {
