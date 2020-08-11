@@ -39,7 +39,6 @@ export default {
       }
       getSongList(this.disc.dissid).then((response) => {
         let res = JSON.parse(response.match(/(?<=\().*(?=\))/)[0])
-        
         if (res.code === ERR_OK) {
           this.songs = this._normalizeSongs(res.cdlist[0].songlist)
         }
