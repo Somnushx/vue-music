@@ -354,8 +354,6 @@ export default {
       const offsetWidth = Math.min(0, Math.max(-window.innerWidth, left + deltaX))
       // 根据滑动百分比确定是否切换到歌词页面
       this.touch.percent = Math.abs(offsetWidth / window.innerWidth)
-      // this.$refs.lyricList.$el.style[transform] = `translate3d{${offsetWidth}px,0,0}`
-      // this.$refs.lyricList.$el.style[transitionDuration] = 0
       this.$refs.lyricList.$el.style[transform] = `translate3d(${offsetWidth}px,0,0)`
       this.$refs.lyricList.$el.style[transitionDuration] = 0
       // 左右滑动距离越大，不透明度越低
