@@ -35,7 +35,9 @@ export default {
     _getDetail() {
       // 刷新当前页面时，回退到上一个页面
       if (!this.singer.id) {
-        this.$router.push('/singer')
+        this.$router.push({
+          name: 'singer'
+        })
         return
       }
       getSingerDetail(this.singer.id).then(res => {
@@ -43,20 +45,6 @@ export default {
           this.songs = this._normalizeSongs(res.data.list)
         }
       })
-      // .then(() => {
-      //   this.songs = this.song.map((item, index) => {
-      //     return {
-      //       album: item.album,
-      //       duration: item.duration,
-      //       id: item.id,
-      //       image: item.image,
-      //       mid: item.mid,
-      //       name: item.name,
-      //       singer: item.singer,
-      //       url: 'https://u.y.qq.com/cgi-bin/musicu.fcg?_=1596522954517'
-      //     }
-      //   })
-      // })
     },
     _normalizeSongs(list) {
       let ret = []

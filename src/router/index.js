@@ -18,36 +18,43 @@ export default new Router({
     },
     {
       path: '/recommend',
+      name: 'recommend',
       component: Recommend,
       children: [
         {
-          path: ':id',
+          path: '/recommend/:recommendId',
+          name: 'recommendId',
           component: Disc
         }
       ]
     },
     {
       path: '/singer',
+      name: 'singer',
       component: Singer,
       children: [
         {
-          path: ':id',
+          path: '/singer/:singerId',
+          name: 'singerId',
           component: SingerDetail
         }
       ]
     },
     {
       path: '/rank',
+      name: 'rank',
       component: Rank,
       children: [
         {
-          path: ':id',
+          path: '/rank/:rankId',
+          name: 'rankId',
           component: topList
         }
       ]
     },
     {
       path: '/search',
+      name: 'search',
       component: Search
     }
   ]

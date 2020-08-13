@@ -94,7 +94,8 @@ export default {
     },
     selectItem(item) {
       this.$router.push({
-        path: `/recommend/${item.dissid}`
+        name: 'recommendId',
+        params: {recommendId: item.dissid}
       })
       this.setDisc(item)
     },

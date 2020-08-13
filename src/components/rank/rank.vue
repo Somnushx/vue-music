@@ -57,7 +57,8 @@ export default {
     },
     selectItem(item) {
       this.$router.push({
-        path: `/rank/${item.id}`
+        name: 'rankId',
+        params: {rankId: item.id}
       })
       this.setTopList(item)
     },

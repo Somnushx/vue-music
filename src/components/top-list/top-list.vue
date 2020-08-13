@@ -38,7 +38,9 @@ export default {
   methods: {
     _getMusicList() {
       if (!this.topList.id) {
-        this.$router.push('/rank')
+        this.$router.push({
+          name: 'rank'
+        })
         return
       }
       getMusicList(this.topList.id).then((res) => {

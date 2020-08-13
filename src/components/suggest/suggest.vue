@@ -45,8 +45,8 @@ export default {
   methods: {
     search() {
       this.page = 1
-      search(this.query, this.page, this.showSinger).then((response) => {
-        let res = JSON.parse(response.match(/(?<=\().*(?=\))/)[0])
+      search(this.query, this.page, this.showSinger).then((res) => {
+        // let res = JSON.parse(response.match(/(?<=\().*(?=\))/)[0])
         if (res.code === ERR_OK) {
           this.result = this._genResult(res.data)
         }

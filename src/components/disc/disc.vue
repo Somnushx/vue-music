@@ -34,11 +34,13 @@ export default {
   methods: {
     _getSongList() {
       if (!this.disc.dissid) {
-        this.$router.push('/recommend')
+        this.$router.push({
+          name: 'recommend'
+        })
         return
       }
-      getSongList(this.disc.dissid).then((response) => {
-        let res = JSON.parse(response.match(/(?<=\().*(?=\))/)[0])
+      getSongList(this.disc.dissid).then((res) => {
+        // let res = JSON.parse(response.match(/(?<=\().*(?=\))/)[0])
         if (res.code === ERR_OK) {
           this.songs = this._normalizeSongs(res.cdlist[0].songlist)
         }

@@ -84,7 +84,8 @@ export default {
     },
     selectSinger(singer) {
       this.$router.push({
-        path: `/singer/${singer.id}`
+        name: 'singerId',
+        params: {singerId: singer.id}
       })
       this.setSinger(singer)
     },

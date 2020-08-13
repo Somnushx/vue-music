@@ -51,15 +51,19 @@ export default {
       }
     }, 20)
     // 屏幕大小变化时，监听该变化，实现页面大小自适应
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', this.resize)
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.resize)
+  },
+  methods: {
+    resize() {
       if (!this.slider) {
         return
       }
       this._setSliderWidth(true)
       this.slider.refresh() // 重新计算宽度后，刷新
-    })
-  },
-  methods: {
+    },
     // 计算
     _setSliderWidth(isResize) {
       this.children = this.$refs.sliderGroup.children
