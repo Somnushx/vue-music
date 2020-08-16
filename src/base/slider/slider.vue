@@ -53,9 +53,6 @@ export default {
     // 屏幕大小变化时，监听该变化，实现页面大小自适应
     window.addEventListener('resize', this.resize)
   },
-  destroyed() {
-    window.removeEventListener('resize', this.resize)
-  },
   methods: {
     resize() {
       if (!this.slider) {
@@ -132,6 +129,7 @@ export default {
     clearTimeout(this.timer)
   },
   beforeDestroy() {
+    window.removeEventListener('resize', this.resize)
     clearTimeout(this.timer) // 组件中设置定时器时，要在组件销毁前清除定时器
   }
 }
