@@ -130,6 +130,9 @@ export default {
     listScroll() {
       this.$emit('listScroll')
     },
+    refresh() {
+      this.$refs.suggest.refresh()
+    },
     getDisplayName(item) {
       if (item.type === TYPE_SINGER) {
         return item.singername
