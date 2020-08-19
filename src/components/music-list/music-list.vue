@@ -88,6 +88,7 @@ export default {
     backPage() {
       this.$router.back()
     },
+    // 点击歌曲列表中的歌曲时，将当前歌曲播放列表传到vuex中的playlist
     selectItem(item, index) {
       this.selectPlay({
         list: this.songs,

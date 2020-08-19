@@ -4,7 +4,12 @@
       <search-box ref="searchbox" @query="onQueryChange"></search-box>
     </div>
     <div class="shortcut-wrapper" v-show="!query" ref="shortcutWrapper">
-      <scroll ref="shortcut" class="shortcut" :data="shortcut">
+      <scroll
+        ref="shortcut"
+        class="shortcut"
+        :data="shortcut"
+        :refreshDelay="refreshDelay"
+      >
         <div>
           <div class="shortcut">
             <div class="hot-key">
@@ -71,7 +76,8 @@ export default {
   data() {
     return {
       hotKey: [],
-      query: ''
+      query: '',
+      refreshDelay: 100
     }
   },
   created() {

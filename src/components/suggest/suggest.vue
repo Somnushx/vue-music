@@ -99,6 +99,7 @@ export default {
           id: item.singermid,
           name: item.singername
         })
+        // 当点击歌手姓名时，实现路由跳转，跳转到singer-detail组件对应的歌手详情页面
         this.$router.push({
           name: 'searchId',
           params: {
@@ -107,6 +108,7 @@ export default {
         })
         this.setSinger(singer)
       } else {
+        // 当点击歌曲时，插入歌曲的同时，对playlist，sequenceList赋值，fullScreen置为true,播放器组件生效
         this.insertSong(item)
       }
       this.$emit('select')
