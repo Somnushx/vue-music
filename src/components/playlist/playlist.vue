@@ -12,7 +12,12 @@
           </h1>
         </div>
         <!-- 播放列表的初始数据为顺序列表中的歌曲数据 -->
-        <scroll ref="listContent" :refreshDelay="refreshDelay" class="list-content" :data="sequenceList">
+        <scroll
+          ref="listContent"
+          :refreshDelay="refreshDelay"
+          class="list-content"
+          :data="sequenceList"
+        >
           <transition-group name="list" tag="ul">
             <li
               :key="item.id"
@@ -23,8 +28,8 @@
             >
               <i class="current" :class="getCurrentIcon(item)"></i>
               <span class="text">{{ item.name }}</span>
-              <span class="like">
-                <i class="icon-not-favorite"></i>
+              <span class="like" @click.stop="toggleFavorite(item)">
+                <i :class="getFavoriteIcon(item)"></i>
               </span>
               <span class="delete" @click.stop="deleteOne(item)">
                 <i class="icon-delete"></i>
