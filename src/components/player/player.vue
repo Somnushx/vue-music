@@ -200,7 +200,9 @@ export default {
         this.playingLyric = ''
         this.currentLineNum = 0
       }
-      setTimeout(() => {
+      // 修改歌曲迅速切换时，歌曲依然播放的问题
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
         this.$refs.audio.play()
         this.ready()
         this.getLyric()
@@ -225,6 +227,7 @@ export default {
     },
     getLyric() {
       this.currentSong.getLyric().then((lyric) => {
+        // 修复歌曲切换过程中，歌词乱掉的问题,由于getLyric异步导致: 当前歌曲歌词还没请求到，已经切换到下一首歌曲，下一首歌曲再次请求歌词，歌词混乱
         if (this.currentSong.lyric !== lyric) {
           return
         }
