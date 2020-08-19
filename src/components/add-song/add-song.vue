@@ -135,7 +135,6 @@ export default {
       if (index !== 0) {
         this.insertSong(new Song(song))
       }
-      this.insertSong(song)
       this.showTip()
     },
     showTip() {
