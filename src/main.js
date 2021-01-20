@@ -8,6 +8,7 @@ import store from './store'
 // import store from './store'
 
 import 'common/stylus/index.styl'
+// import 'common/stylus/index.styl'
 
 fastclick.attach(document.body)
 
